@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="style.css" />
         <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
     </head>
-    <body>
+    <!-- <body>
         <h1>ToDo アプリ</h1>
         <div id="app">
             <div class="new-todo"></div>
@@ -36,6 +36,57 @@
                 </select>
                 <p>{{ author }}</p>
             </div>
+        </div>
+    </body> -->
+    <body>
+        <h1>ToDo アプリ</h1>
+        <div id="app">
+            <div class="new-todo"></div>
+            <div class="new-todo-item">
+                <label for="new-todo-title">タイトル</label>
+                <input v-model.trim="todoTitle" type="text" id="new-todo-title" />
+            </div>
+            <div class="new=todo-item">
+                <label for="new=todo-description">説明</label>
+                <textarea v-model.trim="todoDescription" id="new-todo-description"></textarea>
+            </div>
+            <div>
+                <div class="todo-search">
+                    <div class="todo-serch-item">
+                        <label for="doto-search-keyword">キーワードで検索</label>
+                        <input v-model="searchWord" type="text" id="todo-search-keyword" />
+                    </div>
+                </div>
+            </div>
+            <div id="app">
+                <div>
+                    <select v-model="author" multiple>
+                        <option value="Yamada">Yamada</option>
+                        <option value="Sekiguchi">Sekiguchi</option>
+                        <option value="Nagasawa">Nagasawa</option>
+                    </select>
+                    <p>{{ author }}</p>
+                </div>
+            </div>
+            <div>
+                <div class="todo-search">
+                    <div class="todo-search-item">
+                        <label for="todo-search-done">終了したものを非表示にする<input v-model="hideDoneTodo" type="checbox" id="todo-search-done" /></label>
+                    </div>
+                    <div class="todo-search-item">
+                        <select v-model="order">
+                            <option value="desc">降順</option>
+                            <option value="asc">昇順</option>
+                        </select>
+                    </div>
+                    <div class="todo-search-item">
+                        <label for="todo-search-keyword">キーワードで検索</label>
+                        <input v-model.trim="searchWord" type="text" id="todo-search-keyword" />
+                    </div>
+                </div>
+            </div>
+            <input type="text" v-model.lazy="todoTitle" />
+            <p>{{ todoTitle }}</p>
         </div>
     </body>
 </html>

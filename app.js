@@ -3,8 +3,11 @@ Vue.createApp({
         return {
             todoTitle: '',
             todoDescription: '',
+            todoCategories: [],
+            selectedCategory: '',
+            hideDoneTodo: false,
             searchWord: '',
-        
+            order: 'desc',
         }
     },
 }).mount('#app')
@@ -12,8 +15,9 @@ Vue.createApp({
 Vue.createApp({
     data: function(){
         return {
-            author: '',
+            todoTitle: '',
         }
     },
 }).mount('#app')
+
 
