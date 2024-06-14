@@ -8,7 +8,11 @@
     </head>
     <body>
         <h1>ToDo アプリ</h1>
-        <div id="app"></div>
+        <div id="app">{{ message }}</div>
         <script src="app.js"></script>
+        <div id="app">
+            <input type="text" v-model="message" />
+            <p>{{ message }}</p>
+        </div>
     </body>
 </html>
