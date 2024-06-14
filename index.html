@@ -8,11 +8,34 @@
     </head>
     <body>
         <h1>ToDo アプリ</h1>
-        <div id="app">{{ message }}</div>
-        <script src="app.js"></script>
         <div id="app">
-            <input type="text" v-model="message" />
-            <p>{{ message }}</p>
+            <div class="new-todo"></div>
+            <div class="new-todo-item">
+                <label for="new-todo-title">タイトル</label>
+                <input v-model="todoTitle" type="text" id="new-todo-title" />
+            </div>
+            <div class="new=todo-item">
+                <label for="new=todo-description">説明</label>
+                <textarea v-model="todoDescription" id="new-todo-description"></textarea>
+            </div>
+        </div>
+        <div>
+            <div class="todo-search">
+                <div class="todo-serch-item">
+                    <label for="doto-search-keyword">キーワードで検索</label>
+                    <input v-model="searchWord" type="text" id="todo-search-keyword" />
+                </div>
+            </div>
+        </div>
+        <div id="app">
+            <div>
+                <select v-model="author">
+                    <option value="Yamada">Yamada</option>
+                    <option value="Sekiguchi">Sekiguchi</option>
+                    <option value="Nagasawa">Nagasawa</option>
+                </select>
+                <p>{{ author }}</p>
+            </div>
         </div>
     </body>
 </html>

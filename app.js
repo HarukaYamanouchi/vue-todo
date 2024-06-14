@@ -1,9 +1,19 @@
 Vue.createApp({
-    data:function () {
+    data: function() {
         return {
-            message: 'ToDoアプリケーション',
+            todoTitle: '',
+            todoDescription: '',
+            searchWord: '',
+        
         }
     },
+}).mount('#app')
 
+Vue.createApp({
+    data: function(){
+        return {
+            author: '',
+        }
+    },
 }).mount('#app')
 
