@@ -5,18 +5,38 @@ Vue.createApp({
             todoDescription: '',
             todoCategories: [],
             selectedCategory: '',
+            todos: [],
+            categories: [],
             hideDoneTodo: false,
             searchWord: '',
             order: 'desc',
             categoryName:'',
         }
     },
+    watch: {
+        todos:{
+            handler: function(next){
+                window.localStorage.setItem('todos',JOSN.stringfy(next))
+            },
+            deep: true,
+        },
+    },
+
     computed:{
         canCreateTodo:function(){
             return this.todoTitle !==''
         },
         canCreateCategory: function(){
-            return this.categoryName !==''
+            return this.categoryName !=='' && !this.existsCategory
+    
+        },
+        existsCategory: function() {
+            const categoryName =this.categoryName
+
+            return this.categories.indexOf(categoryName) !==-1
+        },
+        hasTodos: function(){
+            return this.todos.length > 0
         },
     },
     methods:{
@@ -24,6 +44,15 @@ Vue.createApp({
             if(!this.canCreateTodo){
                 return
             }
+
+            this.todos.push({
+                id: 'todo-' +Date.now(),
+                title:this.todoTitle,
+                description: this.todoDescription,
+                categories: this.todoCategories,
+                dateTime: Date.now(),
+                done:false,
+            })
 
             this.todoTitle=''
             this.todoDescription=''
@@ -33,8 +62,22 @@ Vue.createApp({
             if(!this.canCreateCategory){
                 return
             }
+            this.createCategories.push(this.categoryName)
+            
             this.categoryName=''
         },
+    },
+    created: function(){
+        const todos=window.localStorage.getItem('todos')
+        const categories =window.localStorage.getItem('categories')
+
+        if(todos){
+            this.categories=JSON.parse(todos)
+        }
+
+        if(categories){
+            this.categories=JSON.parse(categories)
+        }
     },
 }).mount('#app')
 
