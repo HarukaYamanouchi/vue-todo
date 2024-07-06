@@ -23,6 +23,36 @@ Vue.createApp({
     },
 
     computed:{
+        resultTodos: function(){
+            const selectedCategory = this.selectedCategory
+            const hideDoneTodo = this.hideDoneTodo
+            const order = this.order
+            const searchWord =this.searchWord
+            return this.todos
+            .filter(function(todo){
+                return (
+                    selectedCategory === '' || todo.categories.indexOf (selectedCategory) !== -1
+                )
+            })
+            .filter(function(todo){
+                if(hideDoneTodo) {
+                    return !todo.done
+                }
+                return true
+            })
+            .filter(function(todo){
+                return(
+                    todo.title.indexOf(searchWord) !== -1 || todo.
+                    description.indexOf(searchWord) !== -1
+                )
+            })
+            .sort(function(a,b){
+                if(order === 'asc'){
+                    return a.dateTime-b.dateTime
+                }
+                return b.dateTime-a.dateTime
+            })
+        },
         canCreateTodo:function(){
             return this.todoTitle !==''
         },
